@@ -5,7 +5,14 @@ RAG-система для поиска ответов по стратегиям 
 
 ## Скриншоты
 
-> _Добавить скриншоты интерфейса после запуска_
+> Ответ ассистента
+> <img width="1429" height="815" alt="Снимок экрана 2026-06-05 в 13 59 00" src="https://github.com/user-attachments/assets/5c45e028-2d8d-4d57-a3b9-f07b56da247e" />
+<img width="1420" height="804" alt="Снимок экрана 2026-06-05 в 13 59 13" src="https://github.com/user-attachments/assets/8c2194ff-0b6d-4710-b60f-826935889fb1" />
+
+Отказ на нерелевантный вопрос
+<img width="1395" height="766" alt="Снимок экрана 2026-06-05 в 14 00 32" src="https://github.com/user-attachments/assets/970e409c-2b40-4ab3-806a-e4a75a3a96bc" />
+<img width="1400" height="806" alt="Снимок экрана 2026-06-05 в 14 00 47" src="https://github.com/user-attachments/assets/cf8d8c7f-c9fa-4c48-b6d2-a6c5733b4111" />
+
 
 ## Стек
 
