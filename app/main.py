@@ -5,6 +5,7 @@ Streamlit UI для RAG-ассистента по стратегиям цифр�
     uv run streamlit run app/main.py
 """
 
+import os
 import streamlit as st
 from pathlib import Path
 
@@ -64,6 +65,15 @@ st.success(f"✅ Индекс загружен: {len(retriever.chunks)} чанк
 
 st.divider()
 
+# ── Demo-вопросы (кнопки) ──────────────────────────────────────────────────────
+
+st.markdown("**Demo-вопросы:**")
+cols = st.columns(len(DEMO_QUESTIONS))
+for i, (col, q) in enumerate(zip(cols, DEMO_QUESTIONS)):
+    with col:
+        if st.button(q[:50] + "..." if len(q) > 50 else q, key=f"demo_{i}"):
+            st.session_state["selected_query"] = q
+
 # ── Ввод вопроса ───────────────────────────────────────────────────────────────
 
 col1, col2 = st.columns([3, 1])
@@ -71,21 +81,12 @@ col1, col2 = st.columns([3, 1])
 with col1:
     query = st.text_input(
         "Введите вопрос:",
+        value=st.session_state.get("selected_query", ""),
         placeholder="Например: какие задачи цифровой трансформации в здравоохранении?",
-        key="query_input",
     )
 
 with col2:
     top_k = st.selectbox("Топ чанков", [3, 5, 10], index=0)
-
-# Demo-вопросы
-st.markdown("**Demo-вопросы:**")
-cols = st.columns(len(DEMO_QUESTIONS))
-for i, (col, q) in enumerate(zip(cols, DEMO_QUESTIONS)):
-    with col:
-        if st.button(q[:50] + "..." if len(q) > 50 else q, key=f"demo_{i}"):
-            st.session_state["query_input"] = q
-            query = q
 
 # ── Поиск и генерация ──────────────────────────────────────────────────────────
 
@@ -112,7 +113,6 @@ if query:
     # Генерация ответа
     st.subheader("💬 Ответ ассистента")
 
-    import os
     has_key = bool(os.getenv("OPENROUTER_API_KEY", ""))
 
     if not has_key:
